@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Home Page
+{% endblock %}
+
+{% block content %}
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #484852fb;
+      color: white;
+    }
+
+    .hero-section {
+      background-image: url("{% static 'imageBlock/spaceBackground.jpeg' %}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 500px;
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #222;
+      color: #ffd700;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+
+  <div class="hero-section"></div>
+
+  <h2 style="text-align:center; margin-top:20px;">Exoplanet Data</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Detection Method</th>
+        <th>Mass</th>
+        <th>Radius</th>
+        <th>Flux</th>
+        <th>Surface Temp (K)</th>
+        <th>Period (days)</th>
+        <th>Age (billion years)</th>
+        <th>Distance (ly)</th>
+        <th>ESI</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for planet in planets %}
+        <tr>
+          <td>{{ planet.name }}</td>
+          <td>{{ planet.type }}</td>
+          <td>{{ planet.detectionMethod }}</td>
+          <td>{{ planet.mass }}</td>
+          <td>{{ planet.radius }}</td>
+          <td>{{ planet.flux }}</td>
+          <td>{{ planet.tSurf }}</td>
+          <td>{{ planet.period }}</td>
+          <td>{{ planet.age }}</td>
+          <td>{{ planet.distance }}</td>
+          <td>{{ planet.esi }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
